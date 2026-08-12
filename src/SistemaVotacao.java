@@ -12,12 +12,16 @@ public class SistemaVotacao {
     static String[] nomesCandidatos = new String[MAX_CANDIDATOS];
     static int[] votosCandidatos = new int[MAX_CANDIDATOS];
 
-    static int[][] votosPorTurma = new int[TOTAL_TURMAS][MAX_VOTANTES_POR_TURMA];
+    static int[][] votosPorTurma =
+            new int[TOTAL_TURMAS][MAX_VOTANTES_POR_TURMA];
 
-    static int[] quantidadeVotosTurma = new int[TOTAL_TURMAS];
+    static int[] quantidadeVotosTurma =
+            new int[TOTAL_TURMAS];
+
     static int quantidadeCandidatos = 0;
 
     public static void main(String[] args) {
+
         System.out.println("Sistema de votação iniciado.");
 
         int opcao;
@@ -33,6 +37,7 @@ public class SistemaVotacao {
             opcao = lerInteiro("Opção: ");
 
             switch (opcao) {
+
                 case 1:
                     cadastrarCandidatos();
                     break;
@@ -70,6 +75,7 @@ public class SistemaVotacao {
         int quantidade;
 
         do {
+
             quantidade = lerInteiro(
                     "Quantidade de candidatos entre 1 e 5: "
             );
@@ -85,18 +91,22 @@ public class SistemaVotacao {
             int numero;
 
             while (true) {
+
                 numero = lerInteiro(
                         "\nNúmero do candidato " + (i + 1) + ": "
                 );
 
                 if (numero <= 0) {
-                    System.out.println("O número deve ser maior que zero.");
+                    System.out.println(
+                            "O número deve ser maior que zero."
+                    );
                     continue;
                 }
 
                 boolean numeroRepetido = false;
 
                 for (int j = 0; j < i; j++) {
+
                     if (numerosCandidatos[j] == numero) {
                         numeroRepetido = true;
                         break;
@@ -104,7 +114,9 @@ public class SistemaVotacao {
                 }
 
                 if (numeroRepetido) {
-                    System.out.println("Esse número já está cadastrado.");
+                    System.out.println(
+                            "Esse número já está cadastrado."
+                    );
                     continue;
                 }
 
@@ -114,11 +126,15 @@ public class SistemaVotacao {
             String nome;
 
             do {
+
                 System.out.print("Nome do candidato: ");
+
                 nome = scanner.nextLine().trim();
 
                 if (nome.isEmpty()) {
-                    System.out.println("O nome não pode ficar vazio.");
+                    System.out.println(
+                            "O nome não pode ficar vazio."
+                    );
                 }
 
             } while (nome.isEmpty());
@@ -130,13 +146,19 @@ public class SistemaVotacao {
 
         quantidadeCandidatos = quantidade;
 
-        System.out.println("\nCandidatos cadastrados com sucesso!");
+        System.out.println(
+                "\nCandidatos cadastrados com sucesso!"
+        );
+
+        mostrarCandidatos();
     }
 
     static int buscarCandidato(int numero) {
+
         int indiceEncontrado = -1;
 
         for (int i = 0; i < quantidadeCandidatos; i++) {
+
             if (numerosCandidatos[i] == numero) {
                 indiceEncontrado = i;
                 break;
@@ -146,18 +168,39 @@ public class SistemaVotacao {
         return indiceEncontrado;
     }
 
+    static void mostrarCandidatos() {
+
+        System.out.println("\nCandidatos disponíveis:");
+
+        for (int i = 0; i < quantidadeCandidatos; i++) {
+
+            System.out.println(
+                    numerosCandidatos[i]
+                            + " - "
+                            + nomesCandidatos[i]
+            );
+        }
+    }
 
     static int lerInteiro(String mensagem) {
+
         while (true) {
+
             System.out.print(mensagem);
 
             if (scanner.hasNextInt()) {
+
                 int valor = scanner.nextInt();
+
                 scanner.nextLine();
+
                 return valor;
             }
 
-            System.out.println("Entrada inválida. Digite um número.");
+            System.out.println(
+                    "Entrada inválida. Digite um número."
+            );
+
             scanner.nextLine();
         }
     }
