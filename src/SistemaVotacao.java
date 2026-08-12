@@ -111,11 +111,20 @@ public class SistemaVotacao {
                 break;
             }
 
+            String nome;
+
+            do {
+                System.out.print("Nome do candidato: ");
+                nome = scanner.nextLine().trim();
+
+                if (nome.isEmpty()) {
+                    System.out.println("O nome não pode ficar vazio.");
+                }
+
+            } while (nome.isEmpty());
+
             numerosCandidatos[i] = numero;
-
-            System.out.print("Nome do candidato: ");
-            nomesCandidatos[i] = scanner.nextLine();
-
+            nomesCandidatos[i] = nome;
             votosCandidatos[i] = 0;
         }
 
