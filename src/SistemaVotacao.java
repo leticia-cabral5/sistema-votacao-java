@@ -43,7 +43,7 @@ public class SistemaVotacao {
                     break;
 
                 case 2:
-                    System.out.println("Votação selecionada.");
+                    iniciarVotacao();
                     break;
 
                 case 3:
@@ -180,6 +180,73 @@ public class SistemaVotacao {
                             + nomesCandidatos[i]
             );
         }
+    }
+
+    static void iniciarVotacao() {
+
+        if (quantidadeCandidatos == 0) {
+            System.out.println(
+                    "Cadastre os candidatos primeiro."
+            );
+            return;
+        }
+
+        int turma;
+
+        do {
+
+            turma = lerInteiro(
+                    "Informe a turma de 1 a 3: "
+            );
+
+            if (turma < 1 || turma > TOTAL_TURMAS) {
+                System.out.println("Turma inválida.");
+            }
+
+        } while (turma < 1 || turma > TOTAL_TURMAS);
+
+        int indiceTurma = turma - 1;
+
+        if (quantidadeVotosTurma[indiceTurma]
+                >= MAX_VOTANTES_POR_TURMA) {
+
+            System.out.println(
+                    "Essa turma já atingiu o limite de votos."
+            );
+            return;
+        }
+
+        mostrarCandidatos();
+
+        int numeroCandidato = lerInteiro(
+                "Digite o número do candidato: "
+        );
+
+        int indiceCandidato =
+                buscarCandidato(numeroCandidato);
+
+        if (indiceCandidato == -1) {
+
+            System.out.println(
+                    "Candidato não encontrado."
+            );
+
+            return;
+        }
+
+        int posicaoVoto =
+                quantidadeVotosTurma[indiceTurma];
+
+        votosPorTurma[indiceTurma][posicaoVoto]
+                = numeroCandidato;
+
+        quantidadeVotosTurma[indiceTurma]++;
+
+        votosCandidatos[indiceCandidato]++;
+
+        System.out.println(
+                "Voto registrado com sucesso!"
+        );
     }
 
     static int lerInteiro(String mensagem) {
