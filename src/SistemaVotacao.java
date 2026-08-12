@@ -37,30 +37,25 @@ public class SistemaVotacao {
             opcao = lerInteiro("Opção: ");
 
             switch (opcao) {
-
                 case 1:
                     cadastrarCandidatos();
                     break;
-
                 case 2:
                     iniciarVotacao();
                     break;
-
                 case 3:
                     exibirResultado();
                     break;
-
                 case 4:
                     exibirMatrizVotos();
                     break;
-
                 case 5:
                     System.out.println("Sistema encerrado.");
                     break;
-
                 default:
                     System.out.println("Opção inválida.");
             }
+
 
         } while (opcao != 5);
 
@@ -423,7 +418,7 @@ public class SistemaVotacao {
             }
         }
 
-        int quantidadeVencedores = 0;
+       quantidadeVencedores = 0;
 
         for (int i = 0; i < quantidadeCandidatos; i++) {
             if (votosCandidatos[i] == maiorQuantidadeVotos) {
