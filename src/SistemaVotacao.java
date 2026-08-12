@@ -292,10 +292,13 @@ public class SistemaVotacao {
                  j++) {
 
                 if (j < quantidadeVotosTurma[i]) {
+
                     System.out.print(
                             votosPorTurma[i][j] + " "
                     );
+
                 } else {
+
                     System.out.print("- ");
                 }
             }
@@ -317,6 +320,7 @@ public class SistemaVotacao {
 
         System.out.println("\n===== RESULTADO =====");
 
+        // Calcula o total de votos
         int totalVotos = 0;
 
         for (int i = 0; i < quantidadeCandidatos; i++) {
@@ -324,16 +328,22 @@ public class SistemaVotacao {
             totalVotos += votosCandidatos[i];
         }
 
+        // Verifica se houve algum voto
+        if (totalVotos == 0) {
+
+            System.out.println(
+                    "Nenhum voto foi registrado."
+            );
+
+            return;
+        }
+
+        // Mostra votos e porcentagem de cada candidato
         for (int i = 0; i < quantidadeCandidatos; i++) {
 
-            double percentual = 0;
-
-            if (totalVotos > 0) {
-
-                percentual =
-                        (votosCandidatos[i] * 100.0)
-                                / totalVotos;
-            }
+            double percentual =
+                    (votosCandidatos[i] * 100.0)
+                            / totalVotos;
 
             System.out.println(
                     nomesCandidatos[i]
@@ -348,15 +358,7 @@ public class SistemaVotacao {
             );
         }
 
-        if (totalVotos == 0) {
-
-            System.out.println(
-                    "\nAinda não existem votos."
-            );
-
-            return;
-        }
-
+        // Descobre a maior quantidade de votos
         int maiorNumeroVotos =
                 votosCandidatos[0];
 
@@ -372,6 +374,7 @@ public class SistemaVotacao {
             }
         }
 
+        // Verifica quantos candidatos possuem a maior quantidade
         int quantidadeVencedores = 0;
         int indiceVencedor = -1;
 
@@ -383,10 +386,12 @@ public class SistemaVotacao {
                     == maiorNumeroVotos) {
 
                 quantidadeVencedores++;
+
                 indiceVencedor = i;
             }
         }
 
+        // Mostra vencedor ou empate
         if (quantidadeVencedores == 1) {
 
             System.out.println(
@@ -412,7 +417,8 @@ public class SistemaVotacao {
                         == maiorNumeroVotos) {
 
                     System.out.println(
-                            "- " + nomesCandidatos[i]
+                            "- "
+                                    + nomesCandidatos[i]
                     );
                 }
             }
