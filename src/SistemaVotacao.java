@@ -291,9 +291,13 @@ public class SistemaVotacao {
                  j < MAX_VOTANTES_POR_TURMA;
                  j++) {
 
-                System.out.print(
-                        votosPorTurma[i][j] + " "
-                );
+                if (j < quantidadeVotosTurma[i]) {
+                    System.out.print(
+                            votosPorTurma[i][j] + " "
+                    );
+                } else {
+                    System.out.print("- ");
+                }
             }
 
             System.out.println();
@@ -325,6 +329,7 @@ public class SistemaVotacao {
             double percentual = 0;
 
             if (totalVotos > 0) {
+
                 percentual =
                         (votosCandidatos[i] * 100.0)
                                 / totalVotos;
@@ -335,7 +340,10 @@ public class SistemaVotacao {
                             + " - "
                             + votosCandidatos[i]
                             + " votos - "
-                            + String.format("%.2f", percentual)
+                            + String.format(
+                            "%.2f",
+                            percentual
+                    )
                             + "%"
             );
         }
@@ -349,11 +357,16 @@ public class SistemaVotacao {
             return;
         }
 
-        int maiorNumeroVotos = votosCandidatos[0];
+        int maiorNumeroVotos =
+                votosCandidatos[0];
 
-        for (int i = 1; i < quantidadeCandidatos; i++) {
+        for (int i = 1;
+             i < quantidadeCandidatos;
+             i++) {
 
-            if (votosCandidatos[i] > maiorNumeroVotos) {
+            if (votosCandidatos[i]
+                    > maiorNumeroVotos) {
+
                 maiorNumeroVotos =
                         votosCandidatos[i];
             }
@@ -362,9 +375,12 @@ public class SistemaVotacao {
         int quantidadeVencedores = 0;
         int indiceVencedor = -1;
 
-        for (int i = 0; i < quantidadeCandidatos; i++) {
+        for (int i = 0;
+             i < quantidadeCandidatos;
+             i++) {
 
-            if (votosCandidatos[i] == maiorNumeroVotos) {
+            if (votosCandidatos[i]
+                    == maiorNumeroVotos) {
 
                 quantidadeVencedores++;
                 indiceVencedor = i;
@@ -388,7 +404,9 @@ public class SistemaVotacao {
                     "Candidatos empatados:"
             );
 
-            for (int i = 0; i < quantidadeCandidatos; i++) {
+            for (int i = 0;
+                 i < quantidadeCandidatos;
+                 i++) {
 
                 if (votosCandidatos[i]
                         == maiorNumeroVotos) {
