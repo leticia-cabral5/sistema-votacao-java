@@ -320,7 +320,6 @@ public class SistemaVotacao {
 
         System.out.println("\n===== RESULTADO =====");
 
-        // Calcula o total de votos
         int totalVotos = 0;
 
         for (int i = 0; i < quantidadeCandidatos; i++) {
@@ -328,7 +327,6 @@ public class SistemaVotacao {
             totalVotos += votosCandidatos[i];
         }
 
-        // Verifica se houve algum voto
         if (totalVotos == 0) {
 
             System.out.println(
@@ -338,27 +336,20 @@ public class SistemaVotacao {
             return;
         }
 
-        // Mostra votos e porcentagem de cada candidato
         for (int i = 0; i < quantidadeCandidatos; i++) {
 
             double percentual =
                     (votosCandidatos[i] * 100.0)
                             / totalVotos;
 
-            System.out.println(
-                    nomesCandidatos[i]
-                            + " - "
-                            + votosCandidatos[i]
-                            + " votos - "
-                            + String.format(
-                            "%.2f",
-                            percentual
-                    )
-                            + "%"
+            System.out.printf(
+                    "%s -> %d voto(s) (%.2f%%)%n",
+                    nomesCandidatos[i],
+                    votosCandidatos[i],
+                    percentual
             );
         }
 
-        // Descobre a maior quantidade de votos
         int maiorNumeroVotos =
                 votosCandidatos[0];
 
@@ -374,7 +365,6 @@ public class SistemaVotacao {
             }
         }
 
-        // Verifica quantos candidatos possuem a maior quantidade
         int quantidadeVencedores = 0;
         int indiceVencedor = -1;
 
@@ -391,7 +381,6 @@ public class SistemaVotacao {
             }
         }
 
-        // Mostra vencedor ou empate
         if (quantidadeVencedores == 1) {
 
             System.out.println(
