@@ -413,9 +413,16 @@ public class SistemaVotacao {
             }
         }
 
-        System.out.println(
-                "Total de votos: " + totalVotos
-        );
+        System.out.println("Total de votos: " + totalVotos);
+
+        int maiorQuantidadeVotos = votosCandidatos[0];
+
+        for (int i = 1; i < quantidadeCandidatos; i++) {
+            if (votosCandidatos[i] > maiorQuantidadeVotos) {
+                maiorQuantidadeVotos = votosCandidatos[i];
+            }
+        }
+
     }
 
     static int lerInteiro(String mensagem) {
